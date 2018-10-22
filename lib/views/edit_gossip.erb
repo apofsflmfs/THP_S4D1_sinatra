@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>Edition du potin n° <%=params['id']%></title>
+</head>
+<body>
+  <%id_gossip = params['id']%>
+  <%gossip = Gossip.find(id_gossip)%> 
+  <h1>EDITION DU POTIN n° <%=params['id']%></h1>
+  <form action='/gossips/<%=id_gossip%>' method='PUT'>
+      <p>texte du potin</p>
+      <textarea name='new_gossip_content'><%=gossip.content%></textarea>
+      <p>auteur</p>
+      <textarea name='new_gossip_author'><%=gossip.author%></textarea>
+  </form>
+  <br>  
+  <a href="/gossips/<%=id_gossip%>">Revenir à la page du potin</a>
+  <br>
+  <a href="/">Revenir à l'index'</a>
+
+
+</body>
+</html>
