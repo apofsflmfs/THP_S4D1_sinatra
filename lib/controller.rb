@@ -1,4 +1,5 @@
 require 'gossip'
+require 'comment'
 
 class ApplicationController < Sinatra::Base
   get '/' do
@@ -15,8 +16,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/gossips/:id' do
-    erb :show
+    erb :show, locals: {comments: Comment.all(params['id'])}
   end
+
+  post '/gossips/:id' do
+    Comment.new(params["comment_author"],params["comment_content"],params['id']).save
+    redirect "/gossips/#{params['id']}"
+    
+  end
+
 
   post '/gossips/edit/:id' do
     gossip = Gossip.find(params['id'])
@@ -25,10 +33,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/gossips/edit/:id' do
-    puts "***************************************edit"
     erb :edit_gossip
   end
-
-
-
 end

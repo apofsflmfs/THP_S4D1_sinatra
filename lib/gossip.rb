@@ -1,5 +1,3 @@
-require 'csv'
-
 class Gossip
   attr_reader :author, :content
   def initialize(author,content)
@@ -25,6 +23,7 @@ class Gossip
         end
       end
     end
+    
   end
 
   def self.find(id_gossip)

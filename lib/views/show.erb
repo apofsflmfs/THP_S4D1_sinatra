@@ -3,14 +3,29 @@
   <title>Potin n° <%=params['id']%></title>
 </head>
 <body>
+
   <%id_gossip = params['id']%>
   <%gossip = Gossip.find(id_gossip)%> 
-  <h1>PAGE POTIN</h1>
-  <p>Voici la page du potin n°<%=id_gossip%> (<a href="/gossips/edit/<%=id_gossip%>">éditer le potin</a>)</p>
-  <p>Le contenu du potin : "<%=gossip.content%>"</p>
-  <p>Son auteur : <%=gossip.author%></p>
-  <br>
-  <a href="/">Revenir à l'index</a>
 
+  <h1>PAGE POTIN</h1>
+  <a href="/">Revenir à l'index</a>
+  <br>
+  <p>Voici la page du potin n°<%=id_gossip%> (<a href="/gossips/edit/<%=id_gossip%>">éditer le potin</a>)</p>
+  <p><strong>Le contenu du potin</strong> : "<%=gossip.content%>"</p>
+  <p><strong>Son auteur</strong> : <%=gossip.author%></p>
+  <br>
+  <h2>Commentaires</h2>
+  <hr>
+  <form action='/gossips/<%=id_gossip%>' method='POST'>
+      Poster un nouveau commentaire : <textarea type='text' cols="50" rows = "3" name='comment_content'/></textarea>
+      Ton nom? <input type='text' name='comment_author'/><br/>
+      <input type='submit' value="Commenter" />
+      <hr>
+    </form>
+  <% comments.each do |comment| %>
+        <p>"<%= comment.content %>"</p>
+        <p><em>commenté par <%=comment.author%></em></p>
+        <hr>
+    <% end %>
 </body>
 </html>
