@@ -6,16 +6,19 @@
   <%id_gossip = params['id']%>
   <%gossip = Gossip.find(id_gossip)%> 
   <h1>EDITION DU POTIN n° <%=params['id']%></h1>
-  <form action='/gossips/<%=id_gossip%>' method='PUT'>
+
+  <form action='/gossips/edit/<%=id_gossip%>' method='POST'>
       <p>texte du potin</p>
-      <textarea name='new_gossip_content'><%=gossip.content%></textarea>
+      <textarea type='text' name='new_gossip_content'><%=gossip.content%></textarea>
       <p>auteur</p>
-      <textarea name='new_gossip_author'><%=gossip.author%></textarea>
-  </form>
+      <textarea type='text' name='new_gossip_author'><%=gossip.author%></textarea>
+      <input type='submit' value="Changer le potin!" />
+    </form>
+
   <br>  
   <a href="/gossips/<%=id_gossip%>">Revenir à la page du potin</a>
   <br>
-  <a href="/">Revenir à l'index'</a>
+  <a href="/">Revenir à l'index</a>
 
 
 </body>

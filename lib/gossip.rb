@@ -13,6 +13,20 @@ class Gossip
     end
   end
 
+  def update(new_author, new_content,update_index)
+    array_csv_lines = CSV.read("./db/gossip.csv")
+
+    CSV.open("db/gossip.csv", "wb") do |csv|
+      array_csv_lines.each_with_index do |line,ind|
+        if ind == update_index.to_i
+          csv << [new_author,new_content]
+        else
+          csv << [line[0],line[1]]
+        end
+      end
+    end
+  end
+
   def self.find(id_gossip)
     array_csv_lines = CSV.read("./db/gossip.csv")
     gossip_csv = array_csv_lines[id_gossip.to_i]
