@@ -22,10 +22,14 @@
       <input type='submit' value="Commenter" />
       <hr>
     </form>
-  <% comments.each do |comment| %>
-        <p>"<%= comment.content %>"</p>
-        <p><em>commenté par <%=comment.author%></em></p>
-        <hr>
-    <% end %>
+    <% if comments != []%>
+      <% comments.each do |comment| %>
+            <p>"<%= comment.content %>"</p>
+            <p><em>commenté par <%=comment.author%></em></p>
+            <hr>
+        <% end %>
+      <% else%>
+      <p>Aucun commentaire pour le moment</p>
+      <%end%>
 </body>
 </html>
